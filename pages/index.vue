@@ -185,88 +185,9 @@
 				</div>
 			</div>
 		</section>
-		<section class="calculation">
-			<div class="container px-4">
-				<h5 class="title mb-8">Рассчитайте ипотеку</h5>
-				<div style="box-shadow: 0px 0px 30px 0px #0F11120D" class=" bg-white p-10">
-					<div class="flex flex-col md:flex-row md:justify-between gap-7  ">
-						<div class="flex-grow ">
-							<div class="grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-8 lg:pr-12">
-								<UIMainInput class="text-lg" placeholder="Введите стоимость">Стоимость недвижимости (у.е.)
-								</UIMainInput>
-								<UIMainInput class="text-lg" placeholder="Введите размер взноса">Первоначальный взнос (у.е.)
-								</UIMainInput>
-								<UIMainInput class="text-lg" placeholder="Введите срок">Срок в годах</UIMainInput>
-								<UIMainInput class="text-lg" placeholder="Введите размер ставки">Ставка (%)</UIMainInput>
-							</div>
-							<div class="mt-12 md:hidden">
-								<UIButton>Рассчитать</UIButton>
-							</div>
-						</div>
-						<div
-							class="flex-grow grid grid-cols-1 lg:grid-cols-2 gap-7 border-t pt-7 md:border-t-0 md:border-l border-secondary-100 md:pl-12">
-							<div>
-								<p class="text-lg text-secondary-300">Ежемесячный платеж</p>
-								<p class="font-medium text-2xl">4 410 у.е.</p>
-							</div>
-							<div>
-								<p class="text-lg text-secondary-300">Сумма кредита</p>
-								<p class="font-medium text-2xl">200 000 у.е.</p>
-							</div>
-							<div>
-								<p class="text-lg text-secondary-300">Процентная ставка</p>
-								<p class="font-medium text-2xl">24%</p>
-							</div>
-							<div>
-								<p class="text-lg text-secondary-300">Дата последнего платежа</p>
-								<p class="font-medium text-2xl">28 июля 2034 г</p>
-							</div>
-						</div>
-					</div>
-					<div class="mt-12 hidden md:block">
-						<UIButton>Рассчитать</UIButton>
-					</div>
-
-				</div>
-			</div>
-		</section>
-		<section class="py-[5rem]  lg:py-[15rem]">
-			<div class="container px-4">
-				<div class="bg-main-blue flex flex-col-reverse lg:flex-row lg:justify-between">
-					<div class="p-4 lg:p-[3.5rem] ">
-						<h5 class="title leading-normal mb-5 lg:mb-10">
-							Остались
-							вопросы? <br>Свяжитесь с нами
-						</h5>
-						<form action="" class="flex flex-col gap-7">
-							<UIMainInput variant="no-box" class="text-lg">ФИО <span class="text-main-red">*</span>
-							</UIMainInput>
-							<UIMainInput variant="no-box" class="text-lg">Номер телефона <span class="text-main-red">*</span>
-							</UIMainInput>
-							<UIMainInput variant="no-box" class="text-lg">E-mail</UIMainInput>
-							<UIMainInput variant="no-box" class="text-[18px]">Ваш вопрос</UIMainInput>
-							<div>
-								<UIButton>Отправить</UIButton>
-							</div>
-						</form>
-					</div>
-					<div class="w-full h-[25rem] lg:w-[36rem] lg:h-[40rem]"> <img
-							class="object-cover object-top w-full h-full" src="@/assets/images/contacts.jpg" alt="">
-					</div>
-				</div>
-			</div>
-		</section>
-		<section class="blogs pb-[5rem]  lg:pb-[15rem]">
-			<div class="container px-4">
-				<h5 class="title mb-7">Блог</h5>
-				<div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
-					<BlogItem v-for="blog in blogs" :key="blog.id" :blog="blog" />
-				</div>
-				<div class="flex justify-center mt-[4.5rem]">
-					<UIButton>Все статьи</UIButton>
-				</div>
-			</div>
-		</section>
+		<Calculation />
+		<Contacts class="py-[5rem]  lg:py-[15rem]" />
+		<Blogs class="pb-[5rem]  lg:pb-[15rem]" />
 	</div>
 </template>
 
@@ -277,34 +198,10 @@ import imageBuilding1 from '@/assets/images/building-1.png'
 import imageBuilding2 from '@/assets/images/building-2.png'
 import imageBuilding3 from '@/assets/images/building-3.png'
 import imageBuilding4 from '@/assets/images/building-4.png'
-import imageBlog1 from '@/assets/images/blogs/blog-1.jpg'
-import imageBlog2 from '@/assets/images/blogs/blog-2.jpg'
-import imageBlog3 from '@/assets/images/blogs/blog-3.jpg'
+
 import { HeartIcon } from '@heroicons/vue/24/outline'
 import { HeartIcon as HeartIconSolid } from '@heroicons/vue/24/solid'
-const blogs = ref([
-	{
-		id: 'blog-1',
-		image: imageBlog1,
-		title: 'Тенденции и прогнозы рынка недвижимости на 2024 год',
-		createdAt: '31.07.2024',
-		views: '899'
-	},
-	{
-		id: 'blog-2',
-		image: imageBlog2,
-		title: 'Лучшие районы для инвестиций в недвижимость',
-		createdAt: '31.07.2024',
-		views: '899'
-	},
-	{
-		id: 'blog-3',
-		image: imageBlog3,
-		title: 'Топ-10 новых жилых комплексов',
-		createdAt: '31.07.2024',
-		views: '899'
-	},
-])
+
 const slides = ref([
 	{
 		image: image1,

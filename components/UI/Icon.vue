@@ -1,11 +1,15 @@
 <template>
 	<button class="btn p-2 w-12 h-12 rounded-full flex items-center justify-center border">
-		<img :src="`./icons/${icon}`"></img>
+		<client-only>
+
+			<img :src="image" />
+		</client-only>
 	</button>
 </template>
 
 <script setup lang="ts">
-defineProps<{ icon: string }>()
+const props = defineProps<{ icon: string }>()
+const image = new URL(`../../public/icons/${props.icon}`, import.meta.url).href;
 
 </script>
 

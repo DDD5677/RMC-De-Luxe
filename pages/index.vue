@@ -181,7 +181,7 @@
 					</template>
 				</Slider>
 				<div class="flex justify-center mt-16">
-					<UIButton>Смотреть все</UIButton>
+					<UIButton link href="/buildings">Смотреть все</UIButton>
 				</div>
 			</div>
 		</section>

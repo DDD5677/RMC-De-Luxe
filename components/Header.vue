@@ -1,6 +1,6 @@
 <template>
 	<div class="container px-4">
-		<header class="flex justify-between items-center h-[72px] sm:[100px]">
+		<header class="flex justify-between items-center h-[72px] sm:h-[100px]">
 			<NuxtLink to="/">
 				<img src="@/assets/images/logo.svg" alt="Logo RMC DE LUXE">
 			</NuxtLink>
@@ -30,15 +30,14 @@
 				<UIIcon icon="heart.svg"></UIIcon>
 				<UIIcon class="hidden md:flex" icon="phone.svg"></UIIcon>
 				<UIIcon @click="toggleMenu(true)" class="flex md:hidden" icon="burger.svg"></UIIcon>
-				<UISelect :items="['Ru', 'Uz', 'Eng']" defaultValue="Ru" width="4.5rem" class="rounded-full hidden md:flex">
+				<UISelect :items="lang" :defaultValue="lang[0]" class="rounded-full hidden md:flex text-xl">
 				</UISelect>
 			</div>
 			<div v-if="showMenu" class="fixed left-0 right-0 top-0 bottom-0 z-10 bg-black/50">
 				<nav class="fixed top-0 right-0 h-[100vh]  z-50 bg-white w-3/4 sm:w-1/2 flex flex-col justify-between">
 					<div>
 						<div class="flex justify-end gap-3 p-5 border-b items-center h-[72px] sm:[100px]">
-							<UISelect :items="['Ru', 'Uz', 'Eng']" defaultValue="Ru" width="4.5rem"
-								class="rounded-full text-[1.4rem]">
+							<UISelect :items="lang" :defaultValue="lang[0]" class="rounded-full text-[1.4rem]">
 							</UISelect>
 							<UIIcon @click="toggleMenu(false)" class="" icon="close.svg"></UIIcon>
 						</div>
@@ -102,7 +101,25 @@ const routes = ref(
 		}
 	]
 )
+const lang = ref([
+	{
+		id: 'lang-1',
+		name: 'Ru'
+	},
+	{
+		id: 'lang-2',
+		name: 'Uz'
+	},
+	{
+		id: 'lang-3',
+		name: 'Eng'
+	},
+])
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+a.router-link-exact-active {
+	@apply text-main-300
+}
+</style>

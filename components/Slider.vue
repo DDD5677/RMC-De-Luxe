@@ -7,10 +7,10 @@
 					<slot name="slides" :slide="slide" :addFavorite="addFavorite">
 					</slot>
 
-					<div v-if="dark" class="absolute top-0 left-0 right-0 bg-black/40 bottom-0 z-10" </div>
-					</div>
+					<div v-if="dark" class="absolute top-0 left-0 right-0 bg-black/40 bottom-0 z-10"></div>
+				</div>
 			</swiper-slide>
-
+			<slot name="default"></slot>
 			<slot name="navigation">
 			</slot>
 
@@ -23,7 +23,7 @@
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 const emit = defineEmits(['favorite'])
-const props = withDefaults(defineProps<{ slides: any, dark?: boolean, count?: number, space?: number }>(), {
+const props = withDefaults(defineProps<{ slides: any, dark?: boolean, count?: 'auto' | number, space?: number }>(), {
 	dark: false,
 	count: 1,
 	space: 0

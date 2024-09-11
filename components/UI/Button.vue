@@ -1,8 +1,8 @@
 <template>
-	<a v-if="link" class="inline-block" :class="white ? 'white_btn' : 'main_btn'">
+	<a v-if="link" class="inline-block transition" :class="white ? 'white_btn' : 'main_btn'">
 		<slot></slot>
 	</a>
-	<button v-else :class="white ? 'white_btn' : 'main_btn'">
+	<button v-else :class="white ? 'white_btn' : 'main_btn'" class="transition">
 		<slot></slot>
 	</button>
 </template>
@@ -16,10 +16,10 @@ withDefaults(defineProps<{ link?: boolean, white?: boolean }>(), {
 
 <style scoped>
 .main_btn {
-	@apply bg-main-300 py-[0.75rem] px-[3.5rem] text-white font-semibold text-lg
+	@apply bg-main-300 py-3 px-[3.5rem] text-white font-semibold text-lg hover:bg-main-200 active:bg-main-400 disabled:bg-main-100
 }
 
 .white_btn {
-	@apply py-3 px-5 border border-secondary-100 font-medium text-lg
+	@apply py-3 px-5 border border-secondary-100 font-medium text-lg hover:bg-main-300 active:bg-main-400 disabled:text-secondary-100
 }
 </style>

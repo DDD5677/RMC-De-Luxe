@@ -17,8 +17,4 @@
 .title {
 	@apply text-[2.2rem] sm:text-[3rem] lg:text-[3.5rem] font-medium
 }
-
-a.router-link-active {
-	@apply text-main-300
-}
 </style>

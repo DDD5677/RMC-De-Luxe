@@ -1,11 +1,12 @@
 <template>
-	<label v-if="variant === 'box'" class="text-base text-secondary-400 flex flex-col gap-2 justify-start">
-		<span>
+	<div v-if="variant === 'box'" class="flex text-secondary-400 flex-col gap-2 justify-start">
+		<input
+			class="border order-2 border-secondary-100 outline-none placeholder:text-secondary-300 py-3 px-4 focus:border-main-300 peer"
+			type="text" v-bind="$attrs">
+		<label class="order-1 text-base  peer-focus:text-main-300">
 			<slot></slot>
-		</span>
-		<input class="border border-secondary-100 outline-none placeholder:text-secondary-300 py-3 px-4" type="text"
-			v-bind="$attrs">
-	</label>
+		</label>
+	</div>
 	<label v-if="variant === 'no-box'"
 		class="noBox text-base text-secondary-400 flex flex-col gap-2 justify-start relative">
 		<input class="border-b-2 bg-transparent border-secondary-200 outline-none placeholder:text-transparent  py-3 px-1"

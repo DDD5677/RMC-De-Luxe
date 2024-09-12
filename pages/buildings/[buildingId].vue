@@ -90,7 +90,7 @@
 					</div>
 				</swiper>
 				<div class="flex justify-center mt-16">
-					<UIButton link :href="`/buildings/${route.params.id}/gallery`">Посмотреть всё</UIButton>
+					<UIButton link :href="`/buildings/gallery/${route.params.buildingId}`">Посмотреть всё</UIButton>
 				</div>
 			</div>
 		</section>
@@ -212,24 +212,12 @@
 					},
 				}" style="overflow: visible;" class="min-h-[320px] sm:h-[380px] lg:[300px] xl:h-[380px] 2xl:h-[400px]">
 					<swiper-slide v-for="review in reviewSlides" class="h-full">
-						<div class="border border-secondary-100 py-6 sm:py-7 px-6 h-full flex flex-col">
-							<div class="text-lg text-secondary-300"><span>{{ review.created_at }}</span></div>
-							<h6 class="mb-2 sm:mb-6 text-2xl font-medium">{{ review.name }}</h6>
-							<p class="text-sm sm:text-md">{{ checkTextLength(review.content) ? review.content.slice(0, 420) +
-								'...' :
-								review.content }}
-							</p>
-							<div class="flex-grow flex items-end">
-								<span v-if="checkTextLength(review.content)"
-									class="text-lg text-main-300 mt-3 inline-block">Читать
-									полностью</span>
-							</div>
-						</div>
+						<ReviewCard :review="review" />
 					</swiper-slide>
 
 				</swiper>
 				<div class="flex justify-center mt-4 sm:mt-16">
-					<UIButton link href="/">Все отзывы</UIButton>
+					<UIButton link :href="`/buildings/reviews/${route.params.buildingId}`">Все отзывы</UIButton>
 				</div>
 			</div>
 		</section>
@@ -561,7 +549,7 @@ const infrastructuraTabItems = ref<itemsTabType[]>([
 		]
 	},
 ])
-const checkTextLength = (text: string) => text.length > 420
+
 const reviewSlides = ref([
 	{
 		id: 'review-1',

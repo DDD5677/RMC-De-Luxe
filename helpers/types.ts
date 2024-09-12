@@ -12,3 +12,10 @@ export type itemsTabType = {
    content: string;
    destination?: DestinationType[];
 };
+
+export interface reviewType {
+   id: string;
+   name: string;
+   content: string;
+   created_at: string;
+}

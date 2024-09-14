@@ -35,8 +35,8 @@
 					Статьи
 				</h4>
 				<div>
-					<div class="flex justify-between">
-						<div class="flex gap-3 mb-6 flex-wrap">
+					<div class="controls flex mb-6 gap-2 max-lg:flex-col  lg:justify-between">
+						<div class="flex gap-3 flex-wrap">
 							<UIButton @click="filter = 'all'" white :class="filter === 'all' ? 'bg-main-300 text-white' : ''">
 								Все
 							</UIButton>
@@ -57,7 +57,7 @@
 								Обзоры районов
 							</UIButton>
 						</div>
-						<div>
+						<div class="max-lg:flex max-lg:justify-end">
 							<UISelect class="border-none text-xl" :items="sortItems" right>Сортировать
 								<template #icon>
 									<ArrowsUpDownIcon class="ml-3 w-5" />
@@ -236,4 +236,8 @@ const blogs = ref([
 ])
 </script>
 
-<style scoped></style>
+<style scoped>
+.blogs .controls button {
+	@apply max-lg:py-2 max-lg:px-3 max-sm:text-base max-lg:text-lg;
+}
+</style>

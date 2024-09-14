@@ -16,7 +16,7 @@ withDefaults(defineProps<{ link?: boolean, white?: boolean }>(), {
 
 <style scoped>
 .main_btn {
-	@apply bg-main-300 py-3 px-[3.5rem] text-white font-semibold text-lg hover:bg-main-200 hover:text-white active:bg-main-400 disabled:bg-main-100
+	@apply bg-main-300 py-3 px-14 text-white font-semibold text-lg hover:bg-main-200 hover:text-white active:bg-main-400 disabled:bg-main-100
 }
 
 .white_btn {

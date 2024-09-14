@@ -1,7 +1,7 @@
 <template>
 	<section class="blogs">
 		<div class="container px-4">
-			<h5 class="title mb-7">Блог</h5>
+			<h5 class="title mb-7">{{ title }}</h5>
 			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 				<BlogItem v-for="blog in blogs" :key="blog.id" :blog="blog" :class="{ 'lg:hidden': blog.id == 'blog-4' }" />
 			</div>
@@ -17,6 +17,9 @@ import imageBlog1 from '@/assets/images/blogs/blog-1.jpg'
 import imageBlog2 from '@/assets/images/blogs/blog-2.jpg'
 import imageBlog3 from '@/assets/images/blogs/blog-3.jpg'
 import imageBlog4 from '@/assets/images/blogs/blog-4.jpg'
+withDefaults(defineProps<{ title: string }>(), {
+	title: 'Блог'
+})
 const blogs = ref([
 	{
 		id: 'blog-1',

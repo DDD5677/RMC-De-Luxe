@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div ref="father">
 		<section id="slider">
 			<Slider :slides="building.slides" dark class="h-[800px]">
 				<template #default>
@@ -30,21 +30,21 @@
 				</template>
 			</Slider>
 		</section>
-		<section class="navigation py-10 ">
+		<section class="navigation my-10 sticky top-[-5px] z-50 bg-white">
 			<div class="container">
-				<swiper :slides-per-view="'auto'" class="h-[100px]" :freeMode="true" :modules="modules">
+				<swiper :slides-per-view="'auto'" class="h-[85px] lg:h-[95px]" :freeMode="true" :modules="modules">
 					<swiper-slide v-for="nav in navigation" style="width: max(16%,200px);"
 						class="flex items-center justify-center">
-						<NuxtLink :to="{ path: `#${nav.link}`, query: { sectionId: nav.link } }"
+						<span @click="scrollTo" :id="'#' + nav.link"
 							class="py-8 cursor-pointer text-xl flex justify-center border-b-2 "
-							:class="{ 'border-main-300 font-semibold text-main-300': route.query.sectionId === nav.link, 'border-secondary-100': route.query.sectionId !== nav.link }">
+							:class="{ 'border-main-300 font-semibold text-main-300': activeSection === nav.link, 'border-secondary-100': route.query.sectionId !== nav.link }">
 							{{ nav.name }}
-						</NuxtLink>
+						</span>
 					</swiper-slide>
 				</swiper>
 			</div>
 		</section>
-		<section class="py-[5rem] lg:py-[12.5rem]" id="about">
+		<section class="about target  py-[5rem] lg:py-[12.5rem]" id="about">
 			<div class="container relative px-3">
 				<swiper :slides-per-view="1" :space-between="30" class="h-full">
 					<swiper-slide v-for="slide in aboutBuilding">
@@ -62,7 +62,9 @@
 					<div
 						class="absolute top-0 w-full flex justify-between lg:items-end z-20 max-lg:flex-col max-lg:items-start max-lg:h-full">
 						<div class="bg-white">
-							<h4 class="font-medium text-[3rem] sm:text-[4rem] lg:text-[5rem] my-10">Infinity <br> Клубный дом
+							<h4 class=" font-medium text-[3rem] sm:text-[4rem] lg:text-[5rem] my-10">Infinity
+								<br>
+								Клубный дом
 							</h4>
 							<UIButton>Позвонить</UIButton>
 						</div>
@@ -73,9 +75,9 @@
 				</swiper>
 			</div>
 		</section>
-		<section class="gallery overflow-hidden pt-[5rem]">
+		<section class="gallery  overflow-hidden pt-[5rem]">
 			<div class="container">
-				<h4 class="title mb-10">Фотогалерея и видеотуры</h4>
+				<h4 class="title mb-10 target" id="gallery">Фотогалерея и видеотуры</h4>
 				<swiper :slides-per-view="'auto'" :space-between="10" class="h-[230px] sm:h-[450px] xl:h-[650px]"
 					style="overflow: visible;">
 					<swiper-slide v-for="slide in gallerySlides" style="width:80%" v-slot="options">
@@ -94,9 +96,9 @@
 				</div>
 			</div>
 		</section>
-		<section class="plans py-[5rem] lg:py-[12.5rem]">
+		<section class="plans  py-[5rem] lg:py-[12.5rem]">
 			<div class="container px-3">
-				<h4 class="title mb-12">Планировки и доступные квартиры</h4>
+				<h4 class="title target mb-12" id="plans">Планировки и доступные квартиры</h4>
 				<div class="flex mb-7">
 					<UISelect :items="countRooms" variant="indicator">Количество комнат</UISelect>
 				</div>
@@ -131,7 +133,7 @@
 		</section>
 		<section class="terms">
 			<div class="container px-3">
-				<h4 class="title mb-4">Условия покупки</h4>
+				<h4 class="title target mb-4" id="terms">Условия покупки</h4>
 				<p class="text-xl text-secondary-400 lg:w-1/2">Процесс покупки недвижимости в нашем агентстве разработан
 					таким
 					образом,чтобы обеспечить максимальное удобство и прозрачность для наших клиентов</p>
@@ -174,14 +176,14 @@
 				</div>
 			</div>
 		</section>
-		<section class="infrastructura py-[5rem] lg:py-[12.5rem]">
+		<section class="infrastructura  py-[5rem] lg:py-[12.5rem]">
 			<div class="container px-3">
 				<div class="flex flex-col lg:flex-row justify-between">
 					<div class="w-1/2 max-lg:hidden">
 						<img class="w-full h-full object-cover" :src="infrastructuraImg" alt="">
 					</div>
 					<div class="lg:w-1/2 lg:pl-14">
-						<h4 class="title mb-10">Инфраструктура района</h4>
+						<h4 class="title mb-10 target" id="infrastructure">Инфраструктура района</h4>
 						<div class="w-full my-10 lg:hidden">
 							<img class="w-full h-full object-cover" :src="galleryImg1" alt="">
 						</div>
@@ -190,9 +192,9 @@
 				</div>
 			</div>
 		</section>
-		<section class="reviews overflow-hidden ">
+		<section class="reviews  overflow-hidden ">
 			<div class="container px-3">
-				<h4 class="title mb-12">Отзывы покупателей</h4>
+				<h4 class="title target mb-12" id="reviews">Отзывы покупателей</h4>
 				<swiper :breakpoints="{
 					'320': {
 						slidesPerView: 1,
@@ -277,16 +279,34 @@ import { HeartIcon } from '@heroicons/vue/24/outline'
 import { HeartIcon as HeartIconSolid } from '@heroicons/vue/24/solid'
 import type { itemsTabType } from '~/helpers/types';
 const route = useRoute()
-// watch(route.query, () => {
-// 	const section = document.getElementById(String(route.query.sectionId))
-// 	if (route.query.sectionId) {
-// 		const sectionTop = section?.offsetTop
-// 		window.scrollTo({
-// 			top: sectionTop,
-// 			behavior: "smooth"
-// 		});
-// 	}
-// })
+const activeSection = ref(null)
+const father = ref<HTMLDivElement | null>(null)
+const options = {
+	threshold: 0.1,
+	rootMargin: "-150px"
+}
+onMounted(() => {
+	const targets = father?.value?.querySelectorAll('.target')
+	const observer = new IntersectionObserver(handleObserver, options)
+	targets?.forEach(el => {
+		observer.observe(el)
+	})
+})
+const handleObserver = (entries: any) => {
+	entries.forEach((entry: any) => {
+		if (entry.isIntersecting) {
+			activeSection.value = entry.target.id;
+		}
+	})
+}
+const scrollTo = (e: any) => {
+	const section = father.value?.querySelector(e.target.id)
+	console.log(section.offsetTop);
+	window.scrollTo({
+		top: section.offsetTop - 250,
+		behavior: 'smooth'
+	})
+}
 const navigation = ref([
 	{
 		id: 'nav-1',

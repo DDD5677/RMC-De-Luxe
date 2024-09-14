@@ -2,8 +2,6 @@
 	<div class="h-[100vh] flex flex-col justify-between text-secondary-500">
 		<Header />
 		<main class="flex-grow bg-white">
-
-
 			<NuxtPage></NuxtPage>
 		</main>
 		<Footer />

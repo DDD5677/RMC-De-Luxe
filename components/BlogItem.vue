@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="flex flex-col">
 		<div class="h-[19rem] relative ">
 			<img class="w-full h-full object-cover" :src="blog.image" alt="">
 			<div
@@ -10,9 +10,9 @@
 				</span>
 			</div>
 		</div>
-		<div>
+		<div class="flex flex-grow flex-col justify-between">
 			<h6 class="text-2xl font-medium my-5">{{ blog.title }}</h6>
-			<NuxtLink to="/" class="flex gap-1 text-lg font-semibold">
+			<NuxtLink to="/" class="flex gap-1 text-lg font-semibold hover:text-main-300 transition">
 				<span>Подробнее</span>
 				<ArrowRightIcon class="w-4" />
 			</NuxtLink>

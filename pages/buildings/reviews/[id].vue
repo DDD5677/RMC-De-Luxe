@@ -5,8 +5,8 @@
 			<div class="grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-5">
 				<ReviewCard v-for="review in reviews" :key="review.id" :review="review" @open="openModal" />
 			</div>
-			<div class="flex justify-between py-12 items-center">
-				<div class="flex items-center gap-4">
+			<div class="flex max-sm:flex-col gap-4 justify-between py-12 items-center">
+				<div class="flex  items-center gap-4">
 					<span class="text-lg text-secondary-400">Показывать на странице:</span>
 					<UISelect :items="perPage" :default-value="perPage[1]"></UISelect>
 				</div>

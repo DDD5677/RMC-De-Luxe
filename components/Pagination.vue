@@ -144,11 +144,12 @@ const increamentPage = () => {
 @media(max-width:610px) {
 	.pagination {
 		.page-item {
-			margin-right: 0px;
+			margin-right: 2px;
 
 			.page-link {
 				font-size: 16px;
-				padding: 3px 10px;
+				width: 40px;
+				height: 40px;
 			}
 		}
 	}
@@ -160,7 +161,8 @@ const increamentPage = () => {
 
 			.page-link {
 				font-size: 12px;
-				padding: 2px 8px;
+				width: 30px;
+				height: 30px;
 			}
 		}
 	}

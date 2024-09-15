@@ -6,7 +6,7 @@
 			<ChevronUpIcon v-if="collapse" class="w-4 ml-2" />
 			<ChevronDownIcon v-else class="w-4 ml-2" />
 		</button>
-		<ul v-if="collapse" class="" :class="{ 'w-[250%] absolute shadow-xl left-0 z-50': absolute }">
+		<ul v-if="collapse" class="" :class="{ 'w-[250%] absolute shadow-xl top-10 left-0 z-50': absolute }">
 			<li v-for="item in items" :key="item.name" @click="itemAction ? itemAction(item) : console.log('click')"
 				class="cursor-pointer  " :class="absolute ? 'with_absolute' : 'without_absolute'">
 				<slot name="items" :item="item"></slot>

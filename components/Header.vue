@@ -26,7 +26,7 @@
 				</ul>
 			</nav>
 			<div class="flex gap-4">
-				<UIIcon icon="magnify.svg"></UIIcon>
+				<UIIcon @click="toggleSearch(true)" icon="magnify.svg"></UIIcon>
 				<UIIcon icon="heart.svg"></UIIcon>
 				<UIIcon class="hidden md:flex" icon="phone.svg"></UIIcon>
 				<UIIcon @click="toggleMenu(true)" class="flex md:hidden" icon="burger.svg"></UIIcon>
@@ -70,9 +70,7 @@
 			</div>
 
 		</header>
-		<div class="flex justify-center">
-
-		</div>
+		<SearchModal v-if="showSearch" @toggle="toggleSearch" />
 	</div>
 </template>
 
@@ -80,6 +78,10 @@
 const showMenu = ref(false)
 const toggleMenu = (value: boolean) => {
 	showMenu.value = value
+}
+const showSearch = ref(false)
+const toggleSearch = (value: boolean) => {
+	showSearch.value = value
 }
 const routes = ref(
 	[

@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<swiper :slides-per-view="count" :space-between="space" @swiper="onSwiper" @slideChange="onSlideChange"
-			class="h-full">
+		<swiper :slides-per-view="count" :loop="loop" :space-between="space" @swiper="onSwiper" :breakpoints="breakpoint"
+			@slideChange="onSlideChange" class="h-full">
 			<swiper-slide v-for="slide in slides">
 				<div :style="`background-image: url(${slide.image})`" class="bg-cover bg-no-repeat bg-center h-full  ">
 					<slot name="slides" :slide="slide" :addFavorite="addFavorite">
@@ -23,10 +23,12 @@
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 const emit = defineEmits(['favorite'])
-const props = withDefaults(defineProps<{ slides: any, dark?: boolean, count?: 'auto' | number, space?: number }>(), {
+const props = withDefaults(defineProps<{ slides: any, dark?: boolean, count?: 'auto' | number, space?: number, loop?: boolean, breakpoint?: any }>(), {
 	dark: false,
 	count: 1,
-	space: 0
+	space: 0,
+	loop: false,
+	breakpoint: {}
 })
 const addFavorite = (id: string, value: boolean) => {
 	emit('favorite', { id, value })

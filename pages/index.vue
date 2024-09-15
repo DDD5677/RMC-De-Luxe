@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Slider :slides="slides" dark class="h-[800px]">
+		<Slider :slides="slides" dark loop class="h-[800px]">
 			<template #slides="{ slide }">
 				<div class="container px-4 flex flex-col h-full relative z-20">
 					<div class="flex-[40%] flex-grow"></div>
@@ -158,8 +158,20 @@
 		<section class="buildings py-[5rem]  lg:py-[15rem] overflow-hidden">
 			<div class="container">
 				<h5 class="title px-4 mb-10">Новостройки</h5>
-				<Slider @favorite="addFavoriteHandler" :slides="slidesBuilding" :count="3" :space="20"
-					class="h-[400px] sm:h-[500px] xl:h-[600px] ">
+				<Slider @favorite="addFavoriteHandler" :slides="slidesBuilding" :breakpoint="{
+					'320': {
+						slidesPerView: 1,
+						spaceBetween: 20,
+					},
+					'720': {
+						slidesPerView: 2,
+						spaceBetween: 20,
+					},
+					'1080': {
+						slidesPerView: 3,
+						spaceBetween: 20,
+					},
+				}" class="h-[400px] sm:h-[500px] xl:h-[600px] ">
 					<template #slides="{ slide, addFavorite }">
 						<div
 							class="flex flex-col justify-between h-full relative z-50 bg-gradient-to-b from-black/10 to-black/50">

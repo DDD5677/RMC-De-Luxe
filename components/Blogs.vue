@@ -17,7 +17,7 @@ import imageBlog1 from '@/assets/images/blogs/blog-1.jpg'
 import imageBlog2 from '@/assets/images/blogs/blog-2.jpg'
 import imageBlog3 from '@/assets/images/blogs/blog-3.jpg'
 import imageBlog4 from '@/assets/images/blogs/blog-4.jpg'
-withDefaults(defineProps<{ title: string }>(), {
+withDefaults(defineProps<{ title?: string }>(), {
 	title: 'Блог'
 })
 const blogs = ref([
